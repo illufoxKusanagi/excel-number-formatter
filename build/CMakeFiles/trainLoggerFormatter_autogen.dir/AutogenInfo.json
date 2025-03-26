@@ -359,6 +359,11 @@
 	"SOURCES" : 
 	[
 		[
+			"F:/matkul/sem_6/AppProject/trainLoggerFormatter/controllers/file_handler.cpp",
+			"MU",
+			null
+		],
+		[
 			"F:/matkul/sem_6/AppProject/trainLoggerFormatter/main.cpp",
 			"MU",
 			null

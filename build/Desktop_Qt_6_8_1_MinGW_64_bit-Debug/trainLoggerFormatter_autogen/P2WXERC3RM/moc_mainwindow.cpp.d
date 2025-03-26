@@ -1,6 +1,7 @@
 F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/trainLoggerFormatter_autogen/P2WXERC3RM/moc_mainwindow.cpp: F:/matkul/sem_6/AppProject/trainLoggerFormatter/pages/mainwindow.h \
   F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/trainLoggerFormatter_autogen/moc_predefs.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QByteArray \
+  E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QCoreApplication \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QDate \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QDateTime \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QExplicitlySharedDataPointer \
@@ -16,7 +17,9 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QSizeF \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QString \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QStringList \
+  E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QThread \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QTime \
+  E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QTimer \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QUrl \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QVariant \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/QVector \
@@ -34,6 +37,7 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qatomic.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qatomic_cxx11.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qbasicatomic.h \
+  E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qbasictimer.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qbindingstorage.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qbytearray.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -142,6 +146,8 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qtdeprecationmarkers.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qtenvironmentvariables.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qtextstream.h \
+  E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qthread.h \
+  E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qtimer.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qtimezone.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qtmetamacros.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtCore/qtnoop.h \
@@ -211,6 +217,7 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/QLabel \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/QMainWindow \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/QMessageBox \
+  E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/QProgressDialog \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/QPushButton \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/QSlider \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/QSpinBox \
@@ -229,6 +236,7 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/qlayoutitem.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/qmainwindow.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/qmessagebox.h \
+  E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/qprogressdialog.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/qpushbutton.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/qsizepolicy.h \
   E:/QtCreatorFixed/6.8.1/mingw_64/include/QtWidgets/qslider.h \
@@ -250,6 +258,7 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocator.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_base.h \
+  E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_futex.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_lockfree_defines.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.tcc \
@@ -312,6 +321,8 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/sstream.tcc \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_abs.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_function.h \
+  E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
+  E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algobase.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
@@ -338,6 +349,7 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/string_view.tcc \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stringfwd.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
+  E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h \
@@ -353,6 +365,7 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/codecvt \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/compare \
+  E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/condition_variable \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdint \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdio \
@@ -373,6 +386,7 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/type_traits.h \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/filesystem \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/functional \
+  E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/future \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/initializer_list \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iomanip \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ios \
@@ -385,6 +399,7 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/locale \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory \
+  E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/new \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric \
   E:/QtCreatorFixed/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional \
@@ -484,4 +499,5 @@ F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_
   F:/matkul/sem_6/AppProject/trainLoggerFormatter/QXlsx/QXlsx/header/xlsxdocument.h \
   F:/matkul/sem_6/AppProject/trainLoggerFormatter/QXlsx/QXlsx/header/xlsxformat.h \
   F:/matkul/sem_6/AppProject/trainLoggerFormatter/QXlsx/QXlsx/header/xlsxglobal.h \
-  F:/matkul/sem_6/AppProject/trainLoggerFormatter/QXlsx/QXlsx/header/xlsxworksheet.h
+  F:/matkul/sem_6/AppProject/trainLoggerFormatter/QXlsx/QXlsx/header/xlsxworksheet.h \
+  F:/matkul/sem_6/AppProject/trainLoggerFormatter/controllers/file_handler.h

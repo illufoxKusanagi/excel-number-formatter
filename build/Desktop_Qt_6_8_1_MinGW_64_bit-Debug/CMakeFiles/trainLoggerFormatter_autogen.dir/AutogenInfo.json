@@ -287,6 +287,12 @@
 	"HEADERS" : 
 	[
 		[
+			"F:/matkul/sem_6/AppProject/trainLoggerFormatter/controllers/file_handler.h",
+			"MU",
+			"7CL2LH2DRO/moc_file_handler.cpp",
+			null
+		],
+		[
 			"F:/matkul/sem_6/AppProject/trainLoggerFormatter/pages/mainwindow.h",
 			"MU",
 			"P2WXERC3RM/moc_mainwindow.cpp",
@@ -370,6 +376,11 @@
 	"SETTINGS_FILE" : "F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/trainLoggerFormatter_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"F:/matkul/sem_6/AppProject/trainLoggerFormatter/controllers/file_handler.cpp",
+			"MU",
+			null
+		],
 		[
 			"F:/matkul/sem_6/AppProject/trainLoggerFormatter/main.cpp",
 			"MU",
