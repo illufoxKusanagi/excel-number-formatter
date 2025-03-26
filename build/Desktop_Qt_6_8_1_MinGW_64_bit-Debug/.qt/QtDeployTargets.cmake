@@ -1,5 +1,0 @@
-set(__QT_DEPLOY_TARGET_QXlsx_FILE F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/QXlsx/QXlsx/libQXlsxQt6.a)
-set(__QT_DEPLOY_TARGET_QXlsx_TYPE STATIC_LIBRARY)
-set(__QT_DEPLOY_TARGET_trainLoggerFormatter_FILE F:/matkul/sem_6/AppProject/trainLoggerFormatter/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/trainLoggerFormatter.exe)
-set(__QT_DEPLOY_TARGET_trainLoggerFormatter_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_trainLoggerFormatter_RUNTIME_DLLS E:/QtCreatorFixed/6.8.1/mingw_64/bin/Qt6Widgets.dll;E:/QtCreatorFixed/6.8.1/mingw_64/bin/Qt6Gui.dll;E:/QtCreatorFixed/6.8.1/mingw_64/bin/Qt6Core.dll)
