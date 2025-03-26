@@ -19,6 +19,8 @@ set(PROJECT_SOURCES
     main.cpp
     pages/mainwindow.cpp
     pages/mainwindow.h
+    controllers/file_handler.h
+    controllers/file_handler.cpp
     mainwindow.ui
 )
 
@@ -40,8 +42,8 @@ else()
 endif()
 
 # Tautkan pustaka Qt dan QtXlsx
-target_link_libraries(trainLoggerFormatter PRIVATE 
-    Qt${QT_VERSION_MAJOR}::Widgets 
+target_link_libraries(trainLoggerFormatter PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
     QXlsx
 )
 

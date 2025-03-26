@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "../controllers/file_handler.h"
 #include "xlsxdocument.h"
 #include <QDragEnterEvent>
 #include <QDropEvent>
@@ -10,9 +11,12 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QMimeData>
+#include <QProgressDialog>
 #include <QPushButton>
 #include <QSlider>
 #include <QSpinBox>
+#include <QThread>
+#include <QTimer>
 #include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -26,9 +30,11 @@ class MainWindow : public QMainWindow {
 
 private slots:
   void readExcel();
+  void cancelProcessing();
 
 public:
   MainWindow(QWidget *parent = nullptr);
+  ~MainWindow();
 
 protected:
   void dragEnterEvent(QDragEnterEvent *event) override;
@@ -39,6 +45,11 @@ private:
   QPushButton *button;
   QSlider *qualitySlider;
   QSpinBox *qualityValue;
+  QProgressDialog *progress;
+  QThread thread;
+  FileHandler *fileHandler;
   void processExcel();
+  void handleExcelResult(bool success, const QStringList &sheetNames);
+  void startExcelProcessing(const QString &filePath);
 };
 #endif // MAINWINDOW_H
