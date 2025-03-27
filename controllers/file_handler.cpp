@@ -49,25 +49,24 @@ void FileHandler::procesFile(QString filePath) {
       }
     }
   }
-  if (m_isCanceled) {
-    emit processingCanceled();
-    emit processingFinished();
-    return;
-  }
-  emit progressUpdate(100);
+  cleanupDocument();
   if (!m_isCanceled) {
     emit resultReady(success, sheetNames);
-    QDir dir("F:/matkul/sem_6/AppProject/trainLoggerFormatter/output");
-    if (!dir.exists()) {
-      dir.mkpath(".");
-    }
+    // QDir dir("F:/matkul/sem_6/AppProject/trainLoggerFormatter/output");
+    // if (!dir.exists()) {
+    //   dir.mkpath(".");
+    // }
     bool saveSuccess = m_xlsx->saveAs(
         "F:/matkul/sem_6/AppProject/trainLoggerFormatter/output/output.xlsx");
-    if (!saveSuccess) {
+    if (saveSuccess) {
+      QFile::remove("output.xlsx"); // Remove the old file if it exists
+      QFile::rename("C:/Temp/output_temp.xlsx", "output.xlsx");
+    } else if (!saveSuccess) {
       qDebug() << "Failed to save output file";
     }
   }
-  cleanupDocument();
+  emit progressUpdate(100);
+
   emit processingFinished();
 }
 
@@ -92,6 +91,7 @@ void FileHandler::deleteFirstFourRows(QString sheetName) {
   int maxRow = range.lastRow();
   int maxCol = range.lastColumn();
 
+  // Select columns efficiently
   QVector<int> columnsToCheck;
   if (sheetName == "DDS overview") {
     columnsToCheck << 8 << 11 << 12 << 13 << 14 << 15;
@@ -101,37 +101,54 @@ void FileHandler::deleteFirstFourRows(QString sheetName) {
       columnsToCheck << col;
     }
   }
-  // qDebug() << "Sheet dimensions:" << maxRow << "rows," << maxCol <<
-  // "columns";
-  // Implement your Excel processing logic here
-  // qDebug() << "Processing sheet" << sheetName;
-  for (int col : columnsToCheck) {
-    if (col > maxCol || col < 1) {
-      continue;
-    }
-    for (int row = 5; row <= maxRow; row++) {
-      QVariant value = m_xlsx->read(row, col);
-      QString cellString = value.toString();
-      QRegularExpression numericPattern("^[0-9]*[.,]?[0-9]+$");
-      // Matches integers or floats (e.g., 12, .5, 12.34)
-      if (numericPattern.match(cellString).hasMatch()) {
-        QString normalized = cellString;
-        normalized.replace(',', '.'); // Replace comma with dot
-        bool conversionOk = false;
-        double numValue = normalized.toDouble(&conversionOk);
-        // qDebug() << "Cell value at" << row << col << "is a "
-        //          << (numValue == (int)numValue ? "whole number" : "float")
-        //          << " value:" << numValue;
-        if (conversionOk) {
-          m_xlsx->write(row, col, numValue);
+
+  // Process in larger chunks
+  const int CHUNK_SIZE = 5000;
+  for (int startRow = 5; startRow <= maxRow; startRow += CHUNK_SIZE) {
+    int endRow = qMin(startRow + CHUNK_SIZE - 1, maxRow);
+
+    for (int col : columnsToCheck) {
+      if (col > maxCol || col < 1)
+        continue;
+
+      for (int row = startRow; row <= endRow; row++) {
+        // Check for cancellation every 100 rows
+        if (row % 100 == 0 && m_isCanceled)
+          return;
+
+        QVariant value = m_xlsx->read(row, col);
+        if (value.isNull() || value.toString().isEmpty())
+          continue;
+
+        QString cellString = value.toString();
+
+        // Fast pre-check for numeric content
+        bool potentiallyNumeric = true;
+        for (const QChar &c : cellString) {
+          if (!c.isDigit() && c != '.' && c != ',') {
+            potentiallyNumeric = false;
+            break;
+          }
+        }
+
+        if (potentiallyNumeric) {
+          QString normalized = cellString;
+          normalized.replace(',', '.');
+          bool conversionOk = false;
+          double numValue = normalized.toDouble(&conversionOk);
+
+          if (conversionOk) {
+            m_xlsx->write(row, col, numValue);
+          }
         }
       }
-      if (row % 100 == 0)
-        clearMemoryCache();
+
+      // Process events once per column instead of per cell
+      QCoreApplication::processEvents();
     }
   }
-  clearMemoryCache();
-  m_xlsx->save();
+
+  // m_xlsx->save();
   // QMessageBox::information(
   //     nullptr, "Success",
   //     "Format kolom berhasil diubah ke angka mulai dari baris ke-6");

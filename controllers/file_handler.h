@@ -4,11 +4,14 @@
 #include "xlsxdocument.h"
 #include <QCoreApplication>
 #include <QDir>
+#include <QFuture>
+#include <QFutureWatcher>
 #include <QMessageBox>
 #include <QObject>
 #include <QRegularExpression>
 #include <QString>
 #include <QVector>
+#include <QtConcurrent/QtConcurrent>
 
 class FileHandler : public QObject {
   Q_OBJECT
@@ -31,10 +34,16 @@ private:
   bool m_isCanceled = false;
   QXlsx::Document *m_xlsx = nullptr;
   QString m_currentFilePath;
+  QMutex m_mutex;                           // For thread safety
+  QList<QFutureWatcher<void> *> m_watchers; // Track futures
   void deleteFirstFourRows(QString sheetName);
   void processExcel(QString sheetName);
   void cleanupDocument();
   void clearMemoryCache();
+  // New methods for multithreading
+  void processSheetRange(QString sheetName, int startRow, int endRow,
+                         QVector<int> columnsToCheck);
+  void processSheet(QString sheetName);
 };
 
 #endif // FILE_HANDLER_H
