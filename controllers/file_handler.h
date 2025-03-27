@@ -8,6 +8,7 @@
 #include <QObject>
 #include <QRegularExpression>
 #include <QString>
+#include <QVector>
 
 class FileHandler : public QObject {
   Q_OBJECT
@@ -33,6 +34,7 @@ private:
   void deleteFirstFourRows(QString sheetName);
   void processExcel(QString sheetName);
   void cleanupDocument();
+  void clearMemoryCache();
 };
 
 #endif // FILE_HANDLER_H

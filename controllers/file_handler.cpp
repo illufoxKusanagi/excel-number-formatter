@@ -38,17 +38,16 @@ void FileHandler::procesFile(QString filePath) {
         return;
       }
       int progress = 10 + (i + 1) * 80 / sheetNames.size();
-      emit progressUpdate(progress);
       deleteFirstFourRows(sheetNames[i]);
       processExcel(sheetNames[i]);
       qDebug() << sheetNames[i];
+      emit progressUpdate(progress);
       if (m_isCanceled) {
         emit processingCanceled();
         emit processingFinished();
         return;
       }
     }
-    emit progressUpdate(95);
   }
   if (m_isCanceled) {
     emit processingCanceled();
@@ -93,13 +92,23 @@ void FileHandler::deleteFirstFourRows(QString sheetName) {
   int maxRow = range.lastRow();
   int maxCol = range.lastColumn();
 
+  QVector<int> columnsToCheck;
+  if (sheetName == "DDS overview") {
+    columnsToCheck << 8 << 11 << 12 << 13 << 14 << 15;
+  } else {
+    columnsToCheck << 2 << 3;
+    for (int col = 6; col <= maxCol; col++) {
+      columnsToCheck << col;
+    }
+  }
   // qDebug() << "Sheet dimensions:" << maxRow << "rows," << maxCol <<
   // "columns";
-  int currentRow = 6;
-  int currentCol = 1;
   // Implement your Excel processing logic here
   // qDebug() << "Processing sheet" << sheetName;
-  for (int col = 0; col <= maxCol; col++) {
+  for (int col : columnsToCheck) {
+    if (col > maxCol || col < 1) {
+      continue;
+    }
     for (int row = 5; row <= maxRow; row++) {
       QVariant value = m_xlsx->read(row, col);
       QString cellString = value.toString();
@@ -117,18 +126,17 @@ void FileHandler::deleteFirstFourRows(QString sheetName) {
           m_xlsx->write(row, col, numValue);
         }
       }
+      if (row % 100 == 0)
+        clearMemoryCache();
     }
   }
-  // while (!m_xlsx->read(currentRow, currentCol).isNull()) {
-  //   currentRow++;
-  //   currentCol++;
-  // }
-
-  m_xlsx->save(); // Simpan perubahan ke file
+  clearMemoryCache();
+  m_xlsx->save();
   // QMessageBox::information(
   //     nullptr, "Success",
   //     "Format kolom berhasil diubah ke angka mulai dari baris ke-6");
-  // qDebug() << "Format kolom berhasil diubah ke angka mulai dari baris ke-6";
+  // qDebug() << "Format kolom berhasil diubah ke angka mulai dari baris
+  // ke - 6 ";
 
   // // Process the sheet - move all content up by 4 rows
   // for (int row = 5; row <= maxRow; ++row) {
@@ -157,6 +165,71 @@ void FileHandler::deleteFirstFourRows(QString sheetName) {
   // }
   // qDebug() << "Deleted first 4 rows from sheet" << sheetName;
 }
+
+void FileHandler::clearMemoryCache() { QCoreApplication::processEvents(); }
+
+// void FileHandler::deleteFirstFourRows(QString sheetName) {
+//   if (!m_xlsx || !m_xlsx->selectSheet(sheetName)) {
+//     qDebug() << "Error: Could not select sheet" << sheetName;
+//     return;
+//   }
+
+//   // Get sheet dimensions
+//   QXlsx::CellRange range = m_xlsx->dimension();
+//   if (!range.isValid()) {
+//     qDebug() << "Empty or invalid sheet dimension in" << sheetName;
+//     return;
+//   }
+
+//   int maxRow = range.lastRow();
+//   int maxCol = range.lastColumn();
+
+//   // Pick columns to check based on sheet name
+//   // (A=1, B=2, C=3, F=6, G=7, K=11, L=12, M=13, N=14, O=15, etc.)
+//   QVector<int> columnsToCheck;
+//   if (sheetName == "DDS overview") {
+//     // Example: Only convert columns K, L, M, N, O => 11..15
+//     columnsToCheck << 8 << 11 << 12 << 13 << 14 << 15;
+//   } else {
+//     // Example: Only convert columns B, C, F, G => 2, 3, 6, 7
+//     // to “the last column” could mean something else, but as a sample, we
+//     pick
+//     // specific ones
+//     columnsToCheck << 2 << 3 << 6 << 7;
+//   }
+
+//   QRegularExpression numericPattern("^[0-9]*[.,]?[0-9]+$");
+
+//   // Check only the selected columns
+//   for (int col : qAsConst(columnsToCheck)) {
+//     // Make sure we don’t exceed the sheet’s actual columns
+//     if (col > maxCol)
+//       break;
+
+//     // Start from row 5 if that’s where you want to begin the numeric
+//     conversion for (int row = 5; row <= maxRow; ++row) {
+//       QVariant value = m_xlsx->read(row, col);
+//       QString cellString = value.toString();
+//       // If it contains only numeric-like characters
+//       if (numericPattern.match(cellString).hasMatch()) {
+//         // Convert commas to dots
+//         QString normalized = cellString;
+//         normalized.replace(',', '.');
+
+//         bool conversionOk = false;
+//         double numValue = normalized.toDouble(&conversionOk);
+//         if (conversionOk) {
+//           // Write numeric value back
+//           m_xlsx->write(row, col, numValue);
+//         }
+//       }
+//       clearMemoryCache();
+//     }
+//   }
+
+// Optionally save now or wait until the end of processing
+// m_xlsx->save();
+// }
 
 void FileHandler::processExcel(QString sheetName) {
   // Now you can access m_xlsx directly here
