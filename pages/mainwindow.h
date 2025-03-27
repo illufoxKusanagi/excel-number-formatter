@@ -29,7 +29,7 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
 private slots:
-  void readExcel();
+  void getFile();
   void cancelProcessing();
 
 public:
