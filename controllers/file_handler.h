@@ -3,9 +3,11 @@
 
 #include "xlsxdocument.h"
 #include <QCoreApplication>
+#include <QDir>
+#include <QMessageBox>
 #include <QObject>
+#include <QRegularExpression>
 #include <QString>
-
 
 class FileHandler : public QObject {
   Q_OBJECT
@@ -22,9 +24,15 @@ signals:
 
 public:
   FileHandler();
+  ~FileHandler();
 
 private:
   bool m_isCanceled = false;
+  QXlsx::Document *m_xlsx = nullptr;
+  QString m_currentFilePath;
+  void deleteFirstFourRows(QString sheetName);
+  void processExcel(QString sheetName);
+  void cleanupDocument();
 };
 
 #endif // FILE_HANDLER_H

@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
   layout->addWidget(label);
   layout->addWidget(button);
-  connect(button, &QPushButton::clicked, this, &MainWindow::readExcel);
+  connect(button, &QPushButton::clicked, this, &MainWindow::getFile);
   setAcceptDrops(true);
 
   fileHandler = new FileHandler();
@@ -37,7 +37,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
   });
   connect(fileHandler, &FileHandler::processingFinished, [this]() {
     if (progress)
-      progress->close();
+      disconnect(progress, &QProgressDialog::canceled, this,
+                 &MainWindow::cancelProcessing);
+    progress->close();
   });
   thread.start();
 }
@@ -51,16 +53,12 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
 MainWindow::~MainWindow() {
   // Properly shut down the thread
   if (thread.isRunning()) {
-    thread.quit();     // Ask the thread to quit
-    thread.wait(3000); // Wait up to 3 seconds for it to finish
-
-    // If thread is still running after waiting
+    thread.quit();
+    thread.wait(3000);
     if (thread.isRunning()) {
-      thread.terminate(); // Force termination (should be avoided if possible)
+      thread.terminate();
     }
   }
-
-  // Clean up the progress dialog if it exists
   if (progress) {
     progress->close();
     delete progress;
@@ -68,7 +66,7 @@ MainWindow::~MainWindow() {
   }
 }
 
-void MainWindow::readExcel() {
+void MainWindow::getFile() {
   QString filePath = QFileDialog::getOpenFileName(nullptr, "Pilih file", "",
                                                   "Excel Files (*.xlsx)");
   if (filePath.isEmpty()) {
@@ -114,22 +112,20 @@ void MainWindow::dropEvent(QDropEvent *event) {
 
 void MainWindow::cancelProcessing() {
   int ret = QMessageBox::warning(
-      this, tr("Cancel Operation"),
-      tr("Mid-process cancellation is not supported with QXlsx.\n"
+      this, tr("Warning!"),
+      tr("your file processed in background.\n"
          "Do you want to forcibly cancel and terminate the operation?"),
       QMessageBox::Yes | QMessageBox::No);
 
   if (ret == QMessageBox::Yes) {
-    // Force the FileHandler thread to stop
-    // (If running in the same thread, just set m_isCanceled.)
-    if (thread.isRunning()) {
-      thread.requestInterruption();
-      thread.terminate(); // Not recommended, but sometimes necessary
-      thread.wait(1000);
-      QMessageBox::information(this, "Processing Canceled",
-                               "File processing has been canceled.");
-    }
     QMetaObject::invokeMethod(fileHandler, "cancelProcess",
                               Qt::QueuedConnection);
+    if (thread.isRunning()) {
+      thread.requestInterruption();
+      thread.terminate();
+      thread.wait(1000);
+      QMessageBox::information(this, "Processing Canceled",
+                               "File processing has been canceled by user");
+    }
   }
 }
