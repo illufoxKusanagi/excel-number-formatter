@@ -49,24 +49,20 @@ void FileHandler::procesFile(QString filePath) {
       }
     }
   }
-  cleanupDocument();
   if (!m_isCanceled) {
-    emit resultReady(success, sheetNames);
-    // QDir dir("F:/matkul/sem_6/AppProject/trainLoggerFormatter/output");
-    // if (!dir.exists()) {
-    //   dir.mkpath(".");
-    // }
+    QDir dir("F:/matkul/sem_6/AppProject/trainLoggerFormatter/output");
+    if (!dir.exists()) {
+      dir.mkpath(".");
+    }
     bool saveSuccess = m_xlsx->saveAs(
         "F:/matkul/sem_6/AppProject/trainLoggerFormatter/output/output.xlsx");
-    if (saveSuccess) {
-      QFile::remove("output.xlsx"); // Remove the old file if it exists
-      QFile::rename("C:/Temp/output_temp.xlsx", "output.xlsx");
-    } else if (!saveSuccess) {
+    if (!saveSuccess) {
       qDebug() << "Failed to save output file";
     }
+    cleanupDocument();
   }
   emit progressUpdate(100);
-
+  emit resultReady(sheetNames);
   emit processingFinished();
 }
 

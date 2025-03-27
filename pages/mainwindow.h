@@ -49,7 +49,7 @@ private:
   QThread thread;
   FileHandler *fileHandler;
   void processExcel();
-  void handleExcelResult(bool success, const QStringList &sheetNames);
+  void handleExcelResult(const QStringList &sheetNames);
   void startExcelProcessing(const QString &filePath);
 };
 #endif // MAINWINDOW_H

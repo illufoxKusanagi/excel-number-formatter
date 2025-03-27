@@ -54,7 +54,7 @@ MainWindow::~MainWindow() {
   // Properly shut down the thread
   if (thread.isRunning()) {
     thread.quit();
-    thread.wait(3000);
+    thread.wait(1000);
     if (thread.isRunning()) {
       thread.terminate();
     }
@@ -89,12 +89,11 @@ void MainWindow::startExcelProcessing(const QString &filePath) {
                             Q_ARG(QString, filePath));
 }
 
-void MainWindow::handleExcelResult(bool success,
-                                   const QStringList &sheetNames) {
-  if (!success) {
-    QMessageBox::warning(this, "Error", "Failed to open file!");
-    return;
-  }
+void MainWindow::handleExcelResult(const QStringList &sheetNames) {
+  // if (!success) {
+  //   QMessageBox::warning(this, "Error", "Failed to open file!");
+  //   return;
+  // }
   processExcel();
 }
 

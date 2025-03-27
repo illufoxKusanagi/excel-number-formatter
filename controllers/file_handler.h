@@ -21,7 +21,7 @@ public slots:
   void cancelProcess();
 
 signals:
-  void resultReady(bool success, const QStringList &sheetNames);
+  void resultReady(const QStringList &sheetNames);
   void processingFinished();
   void progressUpdate(int percentage);
   void processingCanceled();
